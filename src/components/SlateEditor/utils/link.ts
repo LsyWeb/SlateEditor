@@ -17,12 +17,12 @@ export const insertLink = (editor: Editor, { text }: { text: string }) => {
   const link = createLinkNode("", text);
   if (!!selection) {
     const [parent, parentPath] = Editor.parent(editor, selection.focus.path);
-    if (parent.type === ElementType.LINK) {
+    if ((parent as any).type === ElementType.LINK) {
       removeLink(editor);
     }
 
     //for image nodes, will be implemented later
-    if (editor.isVoid(parent)) {
+    if (editor.isVoid(parent as any)) {
       Transforms.insertNodes(
         editor,
         { type: ElementType.PARAGRAPH, children: [link] },

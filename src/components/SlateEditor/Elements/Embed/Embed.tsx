@@ -4,22 +4,22 @@ import Icon from "../../common/Icon";
 import { isBlockActive } from "../../utils/SlateUtilityFunctions";
 import usePopup from "../../utils/usePopup";
 import { insertEmbed } from "../../utils/embed";
-const Embed = ({ editor, format }) => {
-  const urlInputRef = useRef();
+const Embed = ({ editor, format }: any) => {
+  const urlInputRef = useRef<any>();
   const [showInput, setShowInput] = usePopup(urlInputRef);
   const [formData, setFormData] = useState({
     url: "",
     width: "",
     height: "",
   });
-  const handleButtonClick = (e) => {
+  const handleButtonClick = (e: any) => {
     e.preventDefault();
-    setShowInput((prev) => !prev);
+    // setShowInput((prev) => !prev);
   };
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = (e: any) => {
     e.preventDefault();
     insertEmbed(editor, { ...formData }, format);
-    setShowInput(false);
+    // setShowInput(false);
     setFormData({
       url: "",
       width: "",
@@ -67,7 +67,7 @@ const Embed = ({ editor, format }) => {
               }
             />
 
-            <Button type="submit">Save</Button>
+            {/* <Button type="submit">Save</Button> */}
           </form>
         </div>
       )}

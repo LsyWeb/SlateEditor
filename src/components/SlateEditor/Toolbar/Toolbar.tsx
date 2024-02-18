@@ -13,7 +13,7 @@ import defaultToolbarGroups from "./toolbarGroups";
 import styles from  "./index.module.scss";
 import ColorPicker from "../Elements/ColorPicker";
 import LinkButton from "../Elements/Link/LinkButton";
-import Embed from "../Elements/Embed/Embed";
+// import Embed from "../Elements/Embed/Embed";
 import Table from "../Elements/Table/Table";
 import InTable from "../Elements/Table/InTable";
 import { ElementType } from "../types/element";
@@ -112,14 +112,14 @@ const Toolbar = () => {
                 );
               case "link":
                 return <LinkButton key={element.id} editor={editor} tooltip={element.tooltip} />;
-              case "embed":
-                return (
-                  <Embed
-                    key={element.id}
-                    format={element.format}
-                    editor={editor}
-                  />
-                );
+              // case "embed":
+              //   return (
+              //     <Embed
+              //       key={element.id}
+              //       format={element.format}
+              //       editor={editor}
+              //     />
+              //   );
               case "color-picker":
                 return (
                   <ColorPicker

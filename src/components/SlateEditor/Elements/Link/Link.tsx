@@ -12,10 +12,15 @@ import { StateContext } from "../../context";
 import { getElementDom } from "../../utils/dom";
 import styles from "./index.module.scss";
 import usePopup from "../../common/PopupCard/hook";
-import PopupCard from "../../common/PopupCard";
+
 import LinkForm from "../../common/LinkForm";
 import { ElementType } from "../../types/element";
 import { replaceText, setNodeProperty } from "../../utils";
+import dynamic from "next/dynamic";
+
+const PopupCard = dynamic(() => import('../../common/PopupCard'), {
+  ssr: false,
+})
 
 type LinkProps = {
   attributes: any;

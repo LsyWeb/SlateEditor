@@ -1,5 +1,7 @@
-import { Card, Form } from "antd";
-import { FC, ReactNode, useContext, useEffect, useRef } from "react";
+'use client';
+
+import { Card } from "antd";
+import { FC, ReactNode, useRef } from "react";
 import useOutsideClick from "../../utils/useOutsideClick";
 import "./index.css";
 import { createPortal } from "react-dom";
@@ -14,6 +16,7 @@ export type PopupCardProps = {
   setVisible: (visible: boolean) => void;
   children?: ReactNode;
 };
+
 const PopupCard: FC<PopupCardProps> = ({
   children,
   position,

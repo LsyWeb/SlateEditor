@@ -7,10 +7,15 @@ import { Editor, Range, Transforms } from "slate";
 import { FC, useContext } from "react";
 import { getSelectedTextDom } from "../../utils/dom";
 import usePopup from "../../common/PopupCard/hook";
-import PopupCard from "../../common/PopupCard";
 import LinkForm from "../../common/LinkForm";
 import { StateContext } from "../../context";
 import { replaceText, setNodeProperty } from "../../utils";
+import dynamic from "next/dynamic";
+
+const PopupCard = dynamic(() => import('../../common/PopupCard'), {
+  ssr: false,
+})
+
 
 type LinkButtonProps = {
   editor: Editor;

@@ -10,7 +10,7 @@ import withEmbeds from "./plugins/withEmbeds";
 import styles from "./Editor.module.scss";
 import Link from "./Elements/Link/Link";
 import Image from "./Elements/Image/Image";
-import Video from "./Elements/Video/Video";
+// import Video from "./Elements/Video/Video";
 import { ElementType } from "./types/element";
 import { StateProvider } from "./context";
 

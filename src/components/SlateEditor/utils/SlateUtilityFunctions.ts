@@ -23,7 +23,7 @@ export const toggleBlock = (editor: Editor, format: ElementType) => {
     Transforms.unwrapNodes(editor, {
       match: (n) =>
         alignment.includes(
-          !Editor.isEditor(n) && SlateElement.isElement(n) && n.type,
+          !Editor.isEditor(n) && SlateElement.isElement(n) && n.type as any,
         ),
       split: true,
     });
@@ -40,7 +40,7 @@ export const toggleBlock = (editor: Editor, format: ElementType) => {
   Transforms.unwrapNodes(editor, {
     match: (n) =>
       list_types.includes(
-        !Editor.isEditor(n) && SlateElement.isElement(n) && n.type,
+        !Editor.isEditor(n) && SlateElement.isElement(n) && n.type as any,
       ),
     split: true,
   });
@@ -81,6 +81,7 @@ export const toggleMark = (editor: Editor, format: ElementType) => {
 export const isMarkActive = (editor: Editor, format: ElementType) => {
   const marks = Editor.marks(editor);
 
+ // @ts-ignore
   return marks ? marks[format] === true : false;
 };
 
@@ -102,5 +103,6 @@ export const activeMark = (editor: Editor, format: ElementType) => {
   };
   const marks = Editor.marks(editor);
   const defaultValue = defaultMarkData[format];
+   // @ts-ignore
   return marks?.[format] ?? defaultValue;
 };

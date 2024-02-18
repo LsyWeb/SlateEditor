@@ -42,13 +42,13 @@ const Table: FC<TableProps> = ({ editor }) => {
 
   const handleButtonClick = () => {
     setSelection(editor.selection);
-    setShowOptions((prev) => !prev);
+    // setShowOptions((prev) => !prev);
   };
   const handleInsert = () => {
     selection && Transforms.select(editor, selection);
     setTableData({ row: -1, column: -1 });
     table.insertTable(tableData.row, tableData.column);
-    setShowOptions(false);
+    // setShowOptions(false);
   };
   return (
     <div ref={tableOptionsRef} className="popup-wrapper">

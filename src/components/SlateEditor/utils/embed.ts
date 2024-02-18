@@ -1,7 +1,7 @@
 import { Editor, Transforms } from "slate";
 
 import { createParagraph } from "./paragraph";
-export const createImageNode = (alt, { url, width, height }) => ({
+export const createImageNode = (alt: any, { url, width, height }: any) => ({
   type: "image",
   alt,
   url,
@@ -9,7 +9,7 @@ export const createImageNode = (alt, { url, width, height }) => ({
   height,
   children: [{ text: "" }],
 });
-export const createVideoNode = ({ url, width, height }) => ({
+export const createVideoNode = ({ url, width, height }: any) => ({
   type: "video",
   url,
   width,
@@ -17,7 +17,7 @@ export const createVideoNode = ({ url, width, height }) => ({
   children: [{ text: "" }],
 });
 
-export const insertEmbed = (editor: Editor, embedData, format) => {
+export const insertEmbed = (editor: Editor, embedData: any, format: any) => {
   const { url, width, height } = embedData;
   if (!url) return;
   embedData.width = width ? `${width}px` : "100%";

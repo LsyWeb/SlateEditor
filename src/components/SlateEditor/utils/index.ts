@@ -34,7 +34,7 @@ export const setNodeProperty = (editor: Editor, property: Node) => {
   );
 
   // 设置节点属性href
-  Transforms.setNodes(editor, property, {
+  Transforms.setNodes(editor, property as any, {
     at: parentPath,
   });
 };
