@@ -1,0 +1,32 @@
+.toolbar {
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 0 8px #ededed;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 8px;
+}
+
+.toolbarGrp > * {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.toolbarGrp {
+  padding: 0 8px;
+  display: flex;
+  position: relative;
+}
+
+.toolbarGrp:after {
+  content: "";
+  display: block;
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 24px;
+  background: #ebebeb;
+}

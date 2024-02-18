@@ -1,0 +1,6 @@
+.popup-card {
+  width: 400px;
+  position: absolute;
+  box-shadow: 0 0 8px #ededed;
+  transition: opacity 0.2s ease-in-out;
+}

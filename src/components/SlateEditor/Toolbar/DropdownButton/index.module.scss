@@ -1,0 +1,13 @@
+.dropdownWrapper {
+  min-width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px;
+  font-size: 14px;
+}
+.dropdownWrapper:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
