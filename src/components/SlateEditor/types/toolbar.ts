@@ -4,12 +4,22 @@ export type ToolbarItem = {
   id: number;
   format: ElementType;
   type?: ToolbarType;
-  options?: ToolbarOptions
+  options?: ToolbarOptions;
   tooltip?: string;
-}
+};
 
 export type ToolbarOptions = { label: string; value: string | number }[];
 
-export type ToolbarType = "block"  | 'mark' | "link" | "embed" | "table" | "inTable" | 'dropdown' | 'color-picker';
+export type ToolbarType =
+  | "block"
+  | "mark"
+  | "link"
+  | "embed"
+  | "table"
+  | "inTable"
+  | "dropdown"
+  | "color-picker"
+  | "image"
+  | "video";
 
 export type ToolbarGroup = ToolbarItem[][];

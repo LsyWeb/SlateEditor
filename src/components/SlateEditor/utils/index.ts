@@ -21,11 +21,22 @@ export const replaceText = (editor: Editor, text: string) => {
 };
 
 /**
- * 设置节点属性
+ * 根据节点信息获取slate的Path
+ * @param element
+ */
+export const getElementPath = (editor: Editor, element: Element) => {
+  return ReactEditor.findPath(editor, element); // 查找 Slate 节点的 路径(path)。
+};
+
+/**
+ * 设置选中节点的属性（可以只写需要改变的属性）
  * @param editor Editor
  * @param property
  */
-export const setNodeProperty = (editor: Editor, property: Node) => {
+export const setSelectedNodeProperty = (
+  editor: Editor,
+  property: Record<string, any>,
+) => {
   const { selection } = editor;
 
   const [parent, parentPath] = Editor.parent(
@@ -34,15 +45,25 @@ export const setNodeProperty = (editor: Editor, property: Node) => {
   );
 
   // 设置节点属性href
-  Transforms.setNodes(editor, property as any, {
+  Transforms.setNodes(editor, property, {
     at: parentPath,
   });
 };
 
 /**
- * 根据节点信息获取slate的Path
- * @param element
+ * 设置某个节点的属性（可以只写需要改变的属性）
+ * @param editor Editor
+ * @param property
  */
-export const getElementPath = async (editor: Editor, element: Element) => {
-  return ReactEditor.findPath(editor, element); // 查找 Slate 节点的 路径(path)。
+export const setNodeProperty = (
+  editor: Editor,
+  element: Element,
+  property: Record<string, any>,
+) => {
+  const parentPath = getElementPath(editor, element); // 查找 Slate 节点的 路径(path)。
+
+  // 设置节点属性href
+  Transforms.setNodes(editor, property as any, {
+    at: parentPath,
+  });
 };

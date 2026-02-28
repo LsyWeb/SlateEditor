@@ -18,6 +18,11 @@ import Table from "../Elements/Table/Table";
 import InTable from "../Elements/Table/InTable";
 import { ElementType } from "../types/element";
 import DropdownButton from "./DropdownButton";
+import dynamic from "next/dynamic";
+
+const ImageButton = dynamic(() => import('../Elements/Image/ImageButton'), {
+  ssr: false,
+})
 
 const Toolbar = () => {
   const editor = useSlate();
@@ -112,20 +117,22 @@ const Toolbar = () => {
                 );
               case "link":
                 return <LinkButton key={element.id} editor={editor} tooltip={element.tooltip} />;
-              // case "embed":
-              //   return (
-              //     <Embed
-              //       key={element.id}
-              //       format={element.format}
-              //       editor={editor}
-              //     />
-              //   );
+              case "image":
+                return (
+                  <ImageButton
+                    key={element.id}
+                    format={element.format}
+                    editor={editor}
+                    tooltip={element.tooltip}
+                  />
+                );
               case "color-picker":
                 return (
                   <ColorPicker
                     key={element.id}
                     format={element.format}
                     editor={editor}
+                    tooltip={element.tooltip}
                   />
                 );
               case "table":

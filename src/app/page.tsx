@@ -1,16 +1,15 @@
-'use client';
+"use client";
 import SlateEditor from "@/components/SlateEditor/Editor";
 import "./page.css";
 import { ConfigProvider } from "antd";
 import { useState } from "react";
 import { Descendant } from "slate";
-
+import { ElementType } from "@/components/SlateEditor/types/element";
 
 export default function Home() {
-
   const [value, setValue] = useState<Descendant[]>([
     {
-      type: "paragaph",
+      type: ElementType.PARAGRAPH,
       children: [
         {
           text: "First line of text in Slate JS.First line of text in Slate JS.First line of text in Slate JS.First line of text in Slate JS. ",
@@ -19,11 +18,16 @@ export default function Home() {
     },
   ]);
 
-
   return (
-    <ConfigProvider >
+    <ConfigProvider>
       <div className="home-wrapper">
-        <SlateEditor initialValue={value} onChange={setValue} />
+        <SlateEditor
+          initialValue={value}
+          onChange={(v) => {
+            console.log(v);
+            setValue(v);
+          }}
+        />
       </div>
     </ConfigProvider>
   );

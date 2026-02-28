@@ -1,7 +1,18 @@
 import { Editor, Transforms } from "slate";
-
 import { createParagraph } from "./paragraph";
-export const createImageNode = (alt: any, { url, width, height }: any) => ({
+import { ElementType } from "../types/element";
+
+export type EmbedData = {
+  url: string;
+  width?: number | string;
+  height?: number | string;
+  alt?: string;
+};
+
+export const createImageNode = (
+  alt: string,
+  { url, width, height }: EmbedData,
+) => ({
   type: "image",
   alt,
   url,
@@ -9,7 +20,8 @@ export const createImageNode = (alt: any, { url, width, height }: any) => ({
   height,
   children: [{ text: "" }],
 });
-export const createVideoNode = ({ url, width, height }: any) => ({
+
+export const createVideoNode = ({ url, width, height }: EmbedData) => ({
   type: "video",
   url,
   width,
@@ -17,17 +29,26 @@ export const createVideoNode = ({ url, width, height }: any) => ({
   children: [{ text: "" }],
 });
 
-export const insertEmbed = (editor: Editor, embedData: any, format: any) => {
-  const { url, width, height } = embedData;
+export const insertEmbed = (
+  editor: Editor,
+  embedData: EmbedData,
+  format: ElementType,
+) => {
+  const { url, width, height, alt } = embedData;
   if (!url) return;
-  embedData.width = width ? `${width}px` : "100%";
-  embedData.height = height ? `${height}px` : "auto";
+
+  const imgWidth = width ? `${width}px` : "100%";
+  const imgHeight = height ? `${height}px` : "auto";
+
   const embed =
     format === "image"
-      ? createImageNode("EditorImage", embedData)
-      : createVideoNode(embedData);
+      ? createImageNode(alt || "EditorImage", {
+          url,
+          width: imgWidth,
+          height: imgHeight,
+        })
+      : createVideoNode({ url, width: imgWidth, height: imgHeight });
 
-  console.log(format);
   Transforms.insertNodes(editor, embed, { select: true });
   Transforms.insertNodes(editor, createParagraph(""), { mode: "highest" });
 };

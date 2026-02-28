@@ -9,13 +9,12 @@ import { getSelectedTextDom } from "../../utils/dom";
 import usePopup from "../../common/PopupCard/hook";
 import LinkForm from "../../common/LinkForm";
 import { StateContext } from "../../context";
-import { replaceText, setNodeProperty } from "../../utils";
+import { replaceText, setNodeProperty, setSelectedNodeProperty } from "../../utils";
 import dynamic from "next/dynamic";
 
-const PopupCard = dynamic(() => import('../../common/PopupCard'), {
+const PopupCard = dynamic(() => import("../../common/PopupCard"), {
   ssr: false,
-})
-
+});
 
 type LinkButtonProps = {
   editor: Editor;
@@ -35,14 +34,14 @@ const LinkButton: FC<LinkButtonProps> = ({ editor, tooltip }) => {
     }
 
     // 如果是空选区（未选中内容），不处理
-    if(selection && Range.isCollapsed(selection)) {
+    if (selection && Range.isCollapsed(selection)) {
       return;
     }
 
     // 如果是选中文本，插入链接
     const text = selection ? Editor.string(editor, selection) : "链接";
     insertLink(editor, { text });
-    
+
     // 获取选中文本的dom
     const dom = await getSelectedTextDom(editor);
     if (dom) {
@@ -67,16 +66,19 @@ const LinkButton: FC<LinkButtonProps> = ({ editor, tooltip }) => {
       <PopupCard {...popup}>
         <LinkForm
           onFinish={(values: any) => {
-             // 设置选中文本
-             replaceText(editor, values.text);
-             // 设置链接
-             setNodeProperty(editor, { type: ElementType.LINK, href: values.href });
-             // 隐藏弹窗
-             state.setLink({
-               href: values.href,
-               linkText: values.text,
-             });
-             popup.hide();
+            // 设置选中文本
+            replaceText(editor, values.text);
+            // 设置链接
+            setSelectedNodeProperty(editor, {
+              type: ElementType.LINK,
+              href: values.href,
+            });
+            // 隐藏弹窗
+            state.setLink({
+              href: values.href,
+              linkText: values.text,
+            });
+            popup.hide();
           }}
         ></LinkForm>
       </PopupCard>

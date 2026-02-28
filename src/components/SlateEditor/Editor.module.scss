@@ -4,8 +4,7 @@
   margin-top: 40px;
   padding: 8px 24px;
   :global {
-
-    .editor{
+    .editor {
       border-radius: 8px;
       background: #ffffff;
       box-shadow: 0px 0px 12px #ededed;
@@ -14,6 +13,10 @@
       margin-top: 40px;
       border: 1px solid #f3f3f3;
       padding: 8px 24px;
+    }
+
+    p {
+      margin-block: 0.5em;
     }
 
     blockquote {
@@ -31,25 +34,6 @@
     }
     table {
       border-collapse: collapse;
-    }
-
-    button {
-      background-color: white;
-      border: none;
-      color: rgba(0, 0, 0, 0.7);
-    }
-
-    .slate-button {
-      padding: 8px;
-      font-size: 16px;
-      border-radius: 4px;
-      &:hover {
-        background: rgba(0, 0, 0, 0.05);
-      }
-      &.active {
-        background: rgba(0, 0, 0, 0.05);
-        color: rgba(0, 0, 0, 0.9);
-      }
     }
 
     a {
@@ -87,3 +71,4 @@
     }
   }
 }
+

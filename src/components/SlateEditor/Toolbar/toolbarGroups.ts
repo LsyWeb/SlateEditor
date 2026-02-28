@@ -122,7 +122,7 @@ const toolbarGroups: ToolbarGroup = [
     {
       id: 21,
       format: ElementType.IMAGE,
-      type: "embed",
+      type: 'image',
       tooltip: "图片",
     },
     {

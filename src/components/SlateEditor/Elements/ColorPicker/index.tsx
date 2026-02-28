@@ -11,9 +11,10 @@ import { ReactEditor } from "slate-react";
 type ColorPickerProps = {
   format: ElementType;
   editor: Editor;
+  tooltip?: string;
 };
 
-const ColorPicker: FC<ColorPickerProps> = ({ format, editor }) => {
+const ColorPicker: FC<ColorPickerProps> = ({ format, editor, tooltip }) => {
   const [selection, setSelection] = useState<BaseSelection>();
 
   const [open, setOpen] = useState(false);
@@ -63,6 +64,7 @@ const ColorPicker: FC<ColorPickerProps> = ({ format, editor }) => {
     >
       <div>
         <Button
+          tooltip={tooltip}
           format={format}
           onClick={() => {
             if (!selection) {

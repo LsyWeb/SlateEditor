@@ -1,6 +1,13 @@
 "use client";
-import React, { FC, useCallback, useContext, useMemo, useState } from "react";
-import { Descendant, createEditor } from "slate";
+import React, {
+  FC,
+  ReactNode,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+} from "react";
+import { Descendant, Element as SlateElement, createEditor } from "slate";
 import { withHistory } from "slate-history";
 import { Slate, Editable, withReact } from "slate-react";
 import Toolbar from "./Toolbar/Toolbar";
@@ -13,8 +20,13 @@ import Image from "./Elements/Image/Image";
 // import Video from "./Elements/Video/Video";
 import { ElementType } from "./types/element";
 import { StateProvider } from "./context";
+import { ImageElement, LinkElement } from "./types";
 
-const Element = (props: any) => {
+const Element = (props: {
+  attributes: any;
+  children: ReactNode;
+  element: SlateElement;
+}) => {
   const { attributes, children, element } = props;
 
   switch (element.type) {
@@ -22,30 +34,30 @@ const Element = (props: any) => {
       return <blockquote {...attributes}>{children}</blockquote>;
     case ElementType.ALIGN_LEFT:
       return (
-        <div
+        <p
           style={{ textAlign: "left", listStylePosition: "inside" }}
           {...attributes}
         >
           {children}
-        </div>
+        </p>
       );
     case ElementType.ALIGN_CENTER:
       return (
-        <div
+        <p
           style={{ textAlign: "center", listStylePosition: "inside" }}
           {...attributes}
         >
           {children}
-        </div>
+        </p>
       );
     case ElementType.ALIGN_RIGHT:
       return (
-        <div
+        <p
           style={{ textAlign: "right", listStylePosition: "inside" }}
           {...attributes}
         >
           {children}
-        </div>
+        </p>
       );
     case ElementType.LIST_ITEM:
       return <li {...attributes}>{children}</li>;
@@ -58,7 +70,30 @@ const Element = (props: any) => {
     case ElementType.UL:
       return <ul {...attributes}>{children}</ul>;
     case ElementType.LINK:
-      return <Link {...props} />;
+      return <Link {...props} element={element as LinkElement} />;
+    case ElementType.IMAGE:
+      if ((element as ImageElement).align === "left") {
+        return (
+          <p style={{ textAlign: "left" }}>
+            <Image {...props} alt="" />
+          </p>
+        );
+      }
+      if ((element as ImageElement).align === "center") {
+        return (
+          <p style={{ textAlign: "center" }}>
+            <Image {...props} alt="" />
+          </p>
+        );
+      }
+      if ((element as ImageElement).align === "right") {
+        return (
+          <p style={{ textAlign: "right" }}>
+            <Image {...props} alt="" />
+          </p>
+        );
+      }
+      return <Image {...props} alt="" />;
 
     case ElementType.TABLE:
       return (
@@ -70,8 +105,6 @@ const Element = (props: any) => {
       return <tr {...attributes}>{children}</tr>;
     case "table-cell":
       return <td {...attributes}>{children}</td>;
-    case ElementType.IMAGE:
-      return <Image {...props} />;
     // case ElementType.ViDEO:
     //   return <Video {...props} />;
     default:

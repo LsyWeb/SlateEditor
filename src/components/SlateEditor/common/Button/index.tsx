@@ -1,8 +1,9 @@
 import { Tooltip } from "antd";
 import React, { FC, ReactNode } from "react";
+import "./index.scss";
 
 type ButtonProps = {
-  format: string;
+  format?: string;
   active?: boolean;
   children: ReactNode;
   tooltip?: string;

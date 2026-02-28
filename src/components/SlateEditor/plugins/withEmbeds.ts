@@ -1,8 +1,8 @@
 const withEmbeds = (editor: any) => {
-  const { isVoid } = editor;
+  const { isInline } = editor;
 
-  editor.isVoid = (element: any) =>
-    ["video", "image"].includes(element.type) ? true : isVoid(element);
+  editor.isInline = (element: any) =>
+    ["video", "image"].includes(element.type) ? true : isInline(element);
   return editor;
 };
 

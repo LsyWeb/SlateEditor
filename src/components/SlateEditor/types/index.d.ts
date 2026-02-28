@@ -7,10 +7,20 @@ type CustomElement = {
   children: CustomText[];
   isInline?: boolean;
 };
+
 type LinkElement = CustomElement & {
   href: string;
   linkText: string;
 };
+
+type ImageElement = CustomElement & {
+  alt?: string;
+  url?: string;
+  width?: number | string;
+  height?: number | string;
+  align?: "left" | "center" | "right";
+};
+
 type CustomText = {
   text?: string;
   bold?: true;
@@ -21,7 +31,7 @@ type CustomText = {
 declare module "slate" {
   interface CustomTypes {
     Editor: BaseEditor & ReactEditor & HistoryEditor;
-    Element: CustomElement | LinkElement;
+    Element: CustomElement | LinkElement | ImageElement;
     Text: CustomText;
   }
 }

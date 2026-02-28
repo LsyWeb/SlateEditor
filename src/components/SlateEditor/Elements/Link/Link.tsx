@@ -15,7 +15,7 @@ import usePopup from "../../common/PopupCard/hook";
 
 import LinkForm from "../../common/LinkForm";
 import { ElementType } from "../../types/element";
-import { replaceText, setNodeProperty } from "../../utils";
+import { replaceText, setNodeProperty, setSelectedNodeProperty } from "../../utils";
 import dynamic from "next/dynamic";
 
 const PopupCard = dynamic(() => import('../../common/PopupCard'), {
@@ -100,7 +100,7 @@ const Link: FC<LinkProps> = ({ attributes, element, children }) => {
             // 设置选中文本
             replaceText(editor, values.text);
             // 设置链接
-            setNodeProperty(editor, {
+            setSelectedNodeProperty(editor, {
               type: ElementType.LINK,
               href: values.href,
             });

@@ -1,6 +1,6 @@
 'use client';
 
-import { MutableRefObject, useEffect, useRef } from "react";
+import { MutableRefObject, useEffect } from "react";
 
 const useOutsideClick = (
   ref: MutableRefObject<HTMLDivElement | null>,
